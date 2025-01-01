@@ -1,0 +1,77 @@
+/* Define CSS variables for colors */
+:root {
+    --primary-color: #ff7c32;   /* Primary color */
+    --secondary-color: #02391e; /* Secondary color */
+}
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Container for layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation styles */
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+nav a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Button styles */
+.btn-primary {
+    background: var(--primary-color); /* Primary color */
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color); /* Secondary color */
+}
+
+/* Custom utility classes */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col {
+        margin-bottom: 20px;
+    }
+}

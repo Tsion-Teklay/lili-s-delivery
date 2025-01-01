@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../../styles/LoginPage.css"; // Import your CSS file
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" });
@@ -40,25 +41,28 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="usernameOrEmail"
-        placeholder="Username or Email"
-        value={credentials.usernameOrEmail}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={credentials.password}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
+      <form onSubmit={handleSubmit} className="login-form">
+        <input
+          type="text"
+          name="usernameOrEmail"
+          placeholder="Username or Email"
+          value={credentials.usernameOrEmail}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={credentials.password}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className="login-button">Login</button>
+      </form>
+    </div>
   );
 };
 

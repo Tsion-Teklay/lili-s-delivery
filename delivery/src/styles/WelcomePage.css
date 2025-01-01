@@ -1,0 +1,29 @@
+.welcome-image {
+    background-image: url('../img/welcome.png'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+}
+
+.welcome-title {
+    color: #02391e; /* Secondary color */
+    font-size: 2.5rem; /* Adjust as needed */
+    font-weight: bold; /* Make it stand out */
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #ff7c32 !important; /* Primary color */
+    border-color: #ff7c32 !important;
+}
+
+.btn-primary:hover {
+    background-color: #e75c0c !important;
+}
+
+.btn-custom {
+    width: 200px; /* Set your desired width */
+    height: 50px; /* Set your desired height */
+    font-size: 1rem; /* Adjust font size as needed */
+}
+

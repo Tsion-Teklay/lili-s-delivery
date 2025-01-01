@@ -1,51 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/WelcomePage.css";
+import "../styles/common.css";
 
 const WelcomePage = () => {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>Welcome to the Food Delivery System</h1>
-      <div style={styles.buttonContainer}>
-        <Link to="/login">
-          <button style={styles.button}>Login</button>
-        </Link>
-        <Link to="/signup">
-          <button style={styles.button}>Sign Up</button>
-        </Link>
+    <div className="row g-0 align-items-center">
+      <div className="col-md-6 welcome-image">
+        {/* Optional: You can add an image here if needed */}
+      </div>
+      <div className="col-md-6 text-center p-5">
+        <h1 className="mb-4 welcome-title">Welcome to Lili’s Cafe and Restaurant</h1>
+        <div className="d-flex flex-column align-items-center">
+          <Link to="/login" className="mb-3">
+            <button className="btn btn-primary btn-lg btn-custom">Login</button>
+          </Link>
+          <p className="mt-2">Don't have an account?</p>
+          <Link to="/signup">
+            <button className="btn btn-primary btn-lg btn-custom">Sign Up</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
-};
-
-// Basic styles for the page
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-    backgroundColor: "#f7f7f7",
-  },
-  header: {
-    fontSize: "2.5rem",
-    marginBottom: "20px",
-    color: "#333",
-  },
-  buttonContainer: {
-    display: "flex",
-    gap: "20px",
-  },
-  button: {
-    padding: "10px 20px",
-    fontSize: "1rem",
-    borderRadius: "5px",
-    border: "none",
-    cursor: "pointer",
-    backgroundColor: "#007bff",
-    color: "white",
-    transition: "background-color 0.3s",
-  },
 };
 
 export default WelcomePage;
