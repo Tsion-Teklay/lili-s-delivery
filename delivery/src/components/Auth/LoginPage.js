@@ -17,16 +17,16 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-  
+
     console.log("Submitting:", credentials); // Log the payload
-  
+
     try {
       const response = await axios.post("http://localhost:8080/api/auth/login", credentials);
       const { role } = response.data;
-  
+
       // Example token storage for future requests
       localStorage.setItem("authToken", response.data.token);
-  
+
       switch (role) {
         case "customer":
           navigate("/dashboard/customer");
@@ -50,15 +50,11 @@ const LoginPage = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <div className="login-container">
       <h1 className="login-title">Login</h1>
       <form onSubmit={handleSubmit} className="login-form">
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
         <input
           type="text"
           name="usernameOrEmail"
@@ -75,8 +71,7 @@ const LoginPage = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit" className="login-button">Login</button>
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="login-button" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
