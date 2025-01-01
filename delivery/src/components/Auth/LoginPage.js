@@ -5,6 +5,8 @@ import "../../styles/LoginPage.css"; // Import your CSS file
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,11 +15,18 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
+    setError("");
+  
+    console.log("Submitting:", credentials); // Log the payload
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/login", credentials);
+      const response = await axios.post("http://localhost:8080/api/auth/login", credentials);
       const { role } = response.data;
-
+  
+      // Example token storage for future requests
+      localStorage.setItem("authToken", response.data.token);
+  
       switch (role) {
         case "customer":
           navigate("/dashboard/customer");
@@ -36,14 +45,20 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      alert("Login failed.");
+      setError("Invalid credentials or server error.");
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   return (
     <div className="login-container">
       <h1 className="login-title">Login</h1>
       <form onSubmit={handleSubmit} className="login-form">
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <input
           type="text"
           name="usernameOrEmail"
@@ -61,6 +76,10 @@ const LoginPage = () => {
           required
         />
         <button type="submit" className="login-button">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>
   );
