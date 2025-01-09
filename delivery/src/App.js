@@ -1,27 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WelcomePage from "./components/WelcomePage";
-import LoginPage from "./components/Auth/LoginPage";
-import SignupPage from "./components/Auth/SignupPage";
-import CustomerDashboard from "./components/dashboard/CustomerDashboard";
-import AdminDashboard from "./components/dashboard/AdminDashboard";
-import DriverDashboard from "./components/dashboard/DriverDashboard";
-import StaffDashboard from "./components/dashboard/StaffDashboard";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Menu from './components/Menu';
+import OrderHistory from './components/OrderHistory';
+import WelcomePage from './components/WelcomePage';
 
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard/customer" element={<CustomerDashboard />} />
-        <Route path="/dashboard/admin" element={<AdminDashboard />} />
-        <Route path="/dashboard/driver" element={<DriverDashboard />} />
-        <Route path="/dashboard/staff" element={<StaffDashboard />} />
-      </Routes>
-    </Router>
-  );
+    const [userId, setUserId] = useState(null);
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<WelcomePage />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login setUser={setUserId} />} />
+                <Route path="/menu" element={<Menu userId={userId} />} />
+                <Route path="/orders" element={<OrderHistory userId={userId} />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;
