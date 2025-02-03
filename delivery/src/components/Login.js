@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import ApiService from '../services/api';
 
 const Login = ({ setUser }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Initialize useNavigate
     const [credentials, setCredentials] = useState({ username: '', password: '' });
 
     const handleChange = (e) => {
@@ -14,9 +14,12 @@ const Login = ({ setUser }) => {
         e.preventDefault();
         try {
             const response = await ApiService.login(credentials);
-            setUser(response.data.token);  // Store token in state or local storage
+            const userId = response.data.userId; // Get user ID from response
+            setUser(response.data.token); // Store token in state or local storage
+            console.log(userId);
+            localStorage.setItem('userId', userId); // Optionally store user ID in local storage
             alert('Login successful!');
-            navigate('/menu');
+            navigate(`/menu/${userId}`); 
         } catch (error) {
             alert(error.response.data);
         }

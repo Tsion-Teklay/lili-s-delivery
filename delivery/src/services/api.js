@@ -9,7 +9,10 @@ const ApiService = {
     addToCart: (userId, menuItemId, quantity) => axios.post(`${API_URL}/cart/add`, null, { params: { userId, menuItemId, quantity } }),
     fetchUserCart: (userId) => axios.get(`${API_URL}/cart/user/${userId}`),
     checkout: (userId, deliveryAddress) => axios.post(`${API_URL}/orders/checkout`, null, { params: { userId, deliveryAddress } }),
-    fetchUserOrders: (userId) => axios.get(`${API_URL}/orders/user/${userId}`)
+    fetchUserOrders: (userId) => axios.get(`${API_URL}/orders/user/${userId}`), 
+    getMenuItemById: async (id) => {
+      return await axios.get(`/menu/${id}`); // Adjust the endpoint as needed
+  }
 };
 
 export default ApiService;
